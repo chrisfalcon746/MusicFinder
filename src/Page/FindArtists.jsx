@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Form, Jumbotron, Container, Button } from "react-bootstrap";
+import { Form, Container, Card, Row } from "react-bootstrap";
 import axios from "axios";
+import Artists from "./Artists";
 function FindArtists() {
-  const [artists, setArtist] = useState([]);
+  const [artists, setArtist] = useState(["drake"]);
   const [apiData, setApiData] = useState([]);
 
   const handleSubmit = (event) => {
@@ -28,13 +29,38 @@ function FindArtists() {
           <Form.Label>Enter Artist's Name</Form.Label>
           <Form.Control id="searchbar" type="text" placeholder="Enter name" />
         </Form.Group>
-        <Button href="artist">Search</Button>
       </Form>
-      <Jumbotron>
-        {apiData.map((artists) => {
-          return <h1>{artists.strArtist}</h1>;
-        })}
-      </Jumbotron>
+
+      {apiData
+        ? apiData.map((artists) => {
+            return (
+              <Row>
+                <Card style={{ width: "18rem" }} key={artists.idArtists}>
+                  <Card.Img variant="top" src={artists.strArtistThumb} />
+                  <Card.Body>
+                    <Card.Title>{artists.strArtist}</Card.Title>
+                    <Card.Text>{artists.strBiographyEN}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Row>
+            );
+          })
+        : "Sorry can't find the artists, please check the spelling."}
+      {/* <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Title>{artists}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">
+            Card Subtitle
+          </Card.Subtitle>
+          <Card.Text>
+            {apiData.map((artists) => {
+              return <h1>{artists.strArtist}</h1>;
+            })}
+          </Card.Text>
+          <Card.Link href="#" class="icon brands alt fa-github"></Card.Link>
+          <Card.Link href="#">Another Link</Card.Link>
+        </Card.Body>
+      </Card> */}
     </Container>
   );
 }
