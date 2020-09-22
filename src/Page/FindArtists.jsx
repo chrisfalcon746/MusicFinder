@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Form, Container, Card, Row } from "react-bootstrap";
+import { AppContext } from "../context/AppContext";
 import axios from "axios";
-import Artists from "./Artists";
 function FindArtists() {
-  const [artists, setArtist] = useState(["drake"]);
+  const { artists, setArtists } = useContext(AppContext);
   const [apiData, setApiData] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("im working");
     console.log(event.target.searchbar.value);
-    setArtist(event.target.searchbar.value);
+    setArtists(event.target.searchbar.value);
   };
 
   useEffect(() => {
@@ -22,6 +22,7 @@ function FindArtists() {
         setApiData(response.data.artists);
       });
   }, [artists]);
+
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
@@ -46,21 +47,6 @@ function FindArtists() {
             );
           })
         : "Sorry can't find the artists, please check the spelling."}
-      {/* <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>{artists}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Card Subtitle
-          </Card.Subtitle>
-          <Card.Text>
-            {apiData.map((artists) => {
-              return <h1>{artists.strArtist}</h1>;
-            })}
-          </Card.Text>
-          <Card.Link href="#" class="icon brands alt fa-github"></Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
-        </Card.Body>
-      </Card> */}
     </Container>
   );
 }
