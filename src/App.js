@@ -3,15 +3,18 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FindArtists from "./Page/FindArtists";
-import Artists from "./Page/Artists";
+import Album from "./Page/Album";
+import { AppContextProvider } from "./context/AppContext";
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={FindArtists} />
-        <Route exact path="/Artist" component={Artists} />
-      </Switch>
-    </Router>
+    <AppContextProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={FindArtists} />
+          <Route exact path="/Album" component={Album} />
+        </Switch>
+      </Router>
+    </AppContextProvider>
   );
 }
 
