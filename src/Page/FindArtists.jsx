@@ -2,14 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { Form, Container, Card, Row } from "react-bootstrap";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
+import NavBar from "../Component/NavBar";
 function FindArtists() {
   const { artists, setArtists } = useContext(AppContext);
   const [apiData, setApiData] = useState([]);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setArtists(event.target.searchbar.value);
-  };
 
   useEffect(() => {
     axios
@@ -22,13 +18,7 @@ function FindArtists() {
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Enter Artist's Name</Form.Label>
-          <Form.Control id="searchbar" type="text" placeholder="Enter name" />
-        </Form.Group>
-      </Form>
-
+      <NavBar />
       {apiData
         ? apiData.map((artists) => {
             return (
