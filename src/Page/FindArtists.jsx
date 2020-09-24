@@ -8,13 +8,10 @@ function FindArtists() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("im working");
-    console.log(event.target.searchbar.value);
     setArtists(event.target.searchbar.value);
   };
 
   useEffect(() => {
-    console.log("is this working?");
     axios
       .get(`https://www.theaudiodb.com/api/v1/json/1/search.php?s=${artists}`)
       .then((response) => {
