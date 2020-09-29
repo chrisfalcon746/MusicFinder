@@ -1,19 +1,21 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Card, Row } from "react-bootstrap";
 import { AppContext } from "../context/AppContext";
 import NavBar from "../Component/NavBar";
 import axios from "axios";
-function Album(artists) {
-  // const { artists } = useContext(AppContext);
+function Album() {
+  const { artists } = useContext(AppContext);
   const [artistAlbum, setArtistAlbum] = useState([]);
-  console.log(artists);
   useEffect(() => {
     axios
       .get(
         `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artists}`
       )
       .then((response) => {
-        setArtistAlbum(response.data.album.map((name) => name.strAlbum));
+        console.log(response.data.album);
+        setArtistAlbum(
+          response.data.album.map((artist) => artist.strAlbumThumb)
+        );
       });
   }, [artists]);
   return (
@@ -21,7 +23,15 @@ function Album(artists) {
       <NavBar />
       {artistAlbum
         ? artistAlbum.map((albums) => {
-            return <h1>{albums}</h1>;
+            return (
+              <Row>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Body>
+                    <Card.Img src={albums} />
+                  </Card.Body>
+                </Card>
+              </Row>
+            );
           })
         : `There are no album for this ${artists}`}
     </Container>

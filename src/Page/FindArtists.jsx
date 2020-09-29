@@ -15,7 +15,7 @@ function FindArtists() {
         setApiData(response.data.artists);
       });
   }, [artists]);
-
+  console.log(artists);
   return (
     <Container>
       <NavBar />
@@ -23,7 +23,7 @@ function FindArtists() {
         ? apiData.map((artist) => {
             return (
               <Row>
-                <Jumbotron>
+                <Jumbotron style={{ backgroundColor: "#e02af5" }}>
                   <Card style={{ width: "18rem" }} key={artist.idArtists}>
                     <Card.Img variant="top" src={artist.strArtistThumb} />
                   </Card>

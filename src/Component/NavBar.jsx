@@ -17,18 +17,14 @@ const Navigation = () => {
     console.log(artists);
   };
   return (
-    <Navbar className="bg-light justify-content-between">
-      <Form onSubmit={handleSubmit}>
+    <Navbar>
+      <Form inline onSubmit={handleSubmit}>
         <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-          </InputGroup.Prepend>
           <FormControl id="artist" type="text" placeholder="Search Artist" />
         </InputGroup>
-      </Form>
-      <Form inline>
-        <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
-        <Button type="submit">Submit</Button>
+        <Nav>
+          <Nav.Link href="/album">Album</Nav.Link>
+        </Nav>
       </Form>
     </Navbar>
   );
