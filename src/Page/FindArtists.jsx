@@ -19,6 +19,7 @@ function FindArtists() {
   return (
     <Container>
       <NavBar />
+
       {apiData
         ? apiData.map((artist) => {
             return (

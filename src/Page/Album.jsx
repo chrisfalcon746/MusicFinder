@@ -13,27 +13,26 @@ function Album() {
       )
       .then((response) => {
         console.log(response.data.album);
-        setArtistAlbum(
-          response.data.album.map((artist) => artist.strAlbumThumb)
-        );
+        setArtistAlbum(response.data.album);
       });
   }, [artists]);
   return (
     <Container>
       <NavBar />
-      {artistAlbum
-        ? artistAlbum.map((albums) => {
-            return (
-              <Row>
+      <Row>
+        {artistAlbum
+          ? artistAlbum.map((albums) => {
+              return (
                 <Card style={{ width: "18rem" }}>
                   <Card.Body>
-                    <Card.Img src={albums} />
+                    <Card.Img src={albums.strAlbumThumb} />
+                    <Card.Title>{albums.strAlbum}</Card.Title>
                   </Card.Body>
                 </Card>
-              </Row>
-            );
-          })
-        : `There are no album for this ${artists}`}
+              );
+            })
+          : `There are no album for this ${artists}`}
+      </Row>
     </Container>
   );
 }
