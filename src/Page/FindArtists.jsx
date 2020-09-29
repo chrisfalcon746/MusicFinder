@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Form, Container, Card, Row } from "react-bootstrap";
+import { Container, Card, Row, Jumbotron } from "react-bootstrap";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import NavBar from "../Component/NavBar";
 function FindArtists() {
-  const { artists, setArtists } = useContext(AppContext);
+  const { artists } = useContext(AppContext);
   const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
@@ -15,25 +15,26 @@ function FindArtists() {
         setApiData(response.data.artists);
       });
   }, [artists]);
-
+  console.log(artists);
   return (
     <Container>
       <NavBar />
+
       {apiData
-        ? apiData.map((artists) => {
+        ? apiData.map((artist) => {
             return (
               <Row>
-                <Card style={{ width: "18rem" }} key={artists.idArtists}>
-                  <Card.Img variant="top" src={artists.strArtistThumb} />
-                  <Card.Body>
-                    <Card.Title>{artists.strArtist}</Card.Title>
-                    <Card.Text>{artists.strBiographyEN}</Card.Text>
-                  </Card.Body>
-                </Card>
+                <Jumbotron style={{ backgroundColor: "#e02af5" }}>
+                  <Card style={{ width: "18rem" }} key={artist.idArtists}>
+                    <Card.Img variant="top" src={artist.strArtistThumb} />
+                  </Card>
+                  <h1>{artist.strArtist}</h1>
+                  <p>{artist.strBiographyEN}</p>
+                </Jumbotron>
               </Row>
             );
           })
-        : "Sorry can't find the artists, please check the spelling."}
+        : "Search for an artist"}
     </Container>
   );
 }
