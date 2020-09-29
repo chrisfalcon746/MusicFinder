@@ -1,12 +1,20 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import { Form, Navbar, InputGroup, FormControl, Button } from "react-bootstrap";
+import {
+  Form,
+  Nav,
+  Navbar,
+  InputGroup,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 const Navigation = () => {
-  const { artist, setArtists } = useContext(AppContext);
+  const { artists, setArtists } = useContext(AppContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setArtists(event.target.artist.value);
+    console.log(artists);
   };
   return (
     <Navbar className="bg-light justify-content-between">

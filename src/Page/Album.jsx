@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Container } from "react-bootstrap";
 import { AppContext } from "../context/AppContext";
+import NavBar from "../Component/NavBar";
 import axios from "axios";
-function Album() {
-  const { artists } = useContext(AppContext);
+function Album(artists) {
+  // const { artists } = useContext(AppContext);
   const [artistAlbum, setArtistAlbum] = useState([]);
+  console.log(artists);
   useEffect(() => {
     axios
       .get(
@@ -14,9 +16,9 @@ function Album() {
         setArtistAlbum(response.data.album.map((name) => name.strAlbum));
       });
   }, [artists]);
-  console.log(artistAlbum);
   return (
     <Container>
+      <NavBar />
       {artistAlbum
         ? artistAlbum.map((albums) => {
             return <h1>{albums}</h1>;
