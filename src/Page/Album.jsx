@@ -5,7 +5,7 @@ import NavBar from "../Component/NavBar";
 function Album() {
   const { artists } = useContext(AppContext);
   const { artistAlbum } = useContext(AppContext);
-
+  console.log(artistAlbum);
   return (
     <Container>
       <NavBar />
