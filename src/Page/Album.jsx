@@ -1,21 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Container, Card, Row } from "react-bootstrap";
 import { AppContext } from "../context/AppContext";
 import NavBar from "../Component/NavBar";
-import axios from "axios";
 function Album() {
   const { artists } = useContext(AppContext);
-  const [artistAlbum, setArtistAlbum] = useState([]);
-  useEffect(() => {
-    axios
-      .get(
-        `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artists}`
-      )
-      .then((response) => {
-        console.log(response.data.album);
-        setArtistAlbum(response.data.album);
-      });
-  }, [artists]);
+  const { artistAlbum } = useContext(AppContext);
+  console.log(artistAlbum);
   return (
     <Container>
       <NavBar />
@@ -24,8 +14,10 @@ function Album() {
           ? artistAlbum.map((albums) => {
               return (
                 <Card style={{ width: "18rem" }}>
-                  <Card.Body>
+                  <a href={`/Songs/${albums.idAlbum}`}>
                     <Card.Img src={albums.strAlbumThumb} />
+                  </a>
+                  <Card.Body>
                     <Card.Title>{albums.strAlbum}</Card.Title>
                   </Card.Body>
                 </Card>

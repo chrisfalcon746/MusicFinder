@@ -1,13 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import {
-  Form,
-  Nav,
-  Navbar,
-  InputGroup,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { Form, Nav, Navbar, InputGroup, FormControl } from "react-bootstrap";
 const Navigation = () => {
   const { artists, setArtists } = useContext(AppContext);
 
