@@ -15,13 +15,6 @@ function SearchSong() {
     console.log(song);
   };
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://www.theaudiodb.com/api/v1/json/1/searchtrack.php?s=${artist}&t=${song}`
-      )
-      .then((response) => console.log(response.data));
-  });
   return (
     <Container>
       <NavBar />
