@@ -17,6 +17,8 @@ const Navigation = () => {
         </InputGroup>
         <Nav>
           <Nav.Link href="/album">Album</Nav.Link>
+          <Nav.Link href="/Music-Video">Music Video</Nav.Link>
+          <Nav.Link href="/Search-Song">Search Songs</Nav.Link>
         </Nav>
       </Form>
     </Navbar>
