@@ -4,17 +4,16 @@ import { Form, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 function SearchSong() {
-  const [artist, setArtist] = useState("drake");
-  const [song, setSong] = useState("God's plan");
+  const [artist, setArtist] = useState();
+  const [song, setSong] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setArtist(event.target.Artist.value);
     setSong(event.target.Song.value);
-    console.log(artist);
-    console.log(song);
   };
-
+  console.log(artist);
+  console.log(song);
   return (
     <Container>
       <NavBar />
@@ -27,9 +26,9 @@ function SearchSong() {
           type="text"
           placeholder="Enter Artist's name"
         />
-        <Button type="Submit" href={`/Artist-Song/${artist}/${song}`}>
-          Submit
-        </Button>
+        {/* ` */}
+        <Button type="Submit">Submit</Button>
+        <Button href={`/Artist-Song/${artist}/${song}`}>Go to Song</Button>
       </Form>
     </Container>
   );

@@ -31,6 +31,7 @@ function ArtistSong() {
                   <Card.Img src={music.strTrackThumb} />
                 </a>
                 <Card.Title>Album: {music.strAlbum}</Card.Title>
+                <Card.Subtitle></Card.Subtitle>
               </Card>
             );
           })
